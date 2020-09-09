@@ -5,10 +5,8 @@ from pathlib import Path
 
 async def main(port: int, addr: str, max_packets: int, log_file: Path):
     """
-
     Parameters
     ----------
-
     port: int
         the network port to use (arbitrary, must match server)
     addr: str
@@ -22,6 +20,7 @@ async def main(port: int, addr: str, max_packets: int, log_file: Path):
 
     if log_file:
         log_file = Path(log_file).expanduser()
+        file = log_file.open("a")
 
     uri = f"ws://{addr}:{port}"
 
@@ -37,4 +36,12 @@ async def main(port: int, addr: str, max_packets: int, log_file: Path):
             if i % 5 == 0:
                 pass
                 # print(f"{i} total messages received")
+
+            if log_file:
+                file.write(data + "\n")
+                file.flush()
+
             print(data)
+
+    if log_file:
+        file.close()
