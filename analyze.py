@@ -16,6 +16,7 @@ from datetime import datetime
 import typing as T
 import matplotlib.pyplot as plt
 import numpy as np
+import statistics
 
 
 def load_data(file: Path) -> T.Dict[str, pandas.DataFrame]:
@@ -49,15 +50,57 @@ if __name__ == "__main__":
     P = p.parse_args()
 
     file = Path(P.file).expanduser()
-
     data = load_data(file)
 
+    # Task 2 part d
+    dates = data["temperature"].index
+
+    # find the time interval between each batch of data being sent
+    seconds = dates[1:]-dates[:-1]
+    interval = [t.total_seconds() for t in seconds]
+    interval_series = pandas.Series(interval)
+
+    # Find mean and variance of the time interval
+    interval_mean = interval_series.mean()
+    interval_var = interval_series.var()
+
+    interval_series.plot.kde()
+
+    print("The mean of the time interval is " + str(interval_mean))
+    print("The variance of the time interval is " + str(interval_var))
+
+
     for k in data:
-        # data[k].plot()
-        time = data[k].index
-        data[k].hist()
-        plt.figure()
-        plt.hist(np.diff(time.values).astype(np.int64) // 1000000000)
-        plt.xlabel("Time (seconds)")
+
+        print("time index:")
+
+        # Task 2 part a
+        print("Median for the temperature:")
+        print(data["temperature"].median())
+
+        print("Variance for the temperature:")
+        print(data["temperature"].var())
+
+        # Task 2 part b
+        print("Median for the occupancy:")
+        print(data["occupancy"].median())
+
+        # find variance of each sensor
+        print("Variance for the occupancy:")
+        print(data["occupancy"].var())
+
+        
+    #     data[k].plot()
+    #     time = data[k].index
+    #     data[k].hist()
+    #     plt.figure()
+    #     plt.hist(np.diff(time.values).astype(np.int64) // 1000000000)
+    #     plt.xlabel("Time (seconds)")
+
+          # Task 2 part c
+    #     # plot pdf of each sensor
+    #     data[k].plot.kde()
+
+
 
     plt.show()
