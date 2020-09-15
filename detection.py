@@ -13,6 +13,7 @@ from pathlib import Path
 import argparse
 import json
 from datetime import datetime
+from scipy import stats
 import typing as T
 import matplotlib.pyplot as plt
 import numpy as np
@@ -54,56 +55,29 @@ if __name__ == "__main__":
     file = Path(P.file).expanduser()
     data = load_data(file)
     temperature = data["temperature"]
-    size = len(temperature)
-    print(size)
+    total_outliers = []
 
-    for i in range(size):
+    # iterate through every room that has temperature data
 
-        temp1 = temperature["office"].iloc[i]
-        temp2 = temperature["lab1"].iloc[i]
-        temp3 = temperature["class1"].iloc[i]
+    for k in temperature:
 
-        if np.isnan(temp1):
-            pass
-        else:
-            current_temp = temp1
+        current_mean = temperature[k].mean()
+        current_std = temperature[k].std()
 
-        if np.isnan(temp2):
-            pass
-        else:
-            current_temp = temp2
+        # lower and upper limits are three standard deviations away from the mean
+        lower_limit = current_mean - (current_std*3)
+        upper_limit = current_mean + (current_std*3)
+        outliers = []
 
-        if np.isnan(temp3):
-            pass
-        else:
-            current_temp = temp3
+        # if the value being analyzed is above/below the limits defined above
+        # those values are saved to an array "total_outliers"
+        for i in temperature[k]:
+            if i > upper_limit or i < lower_limit:
+                outliers.append(i)
 
-        print(current_temp)
+        total_outliers.append({k: outliers})
+        
 
-        break
-
-    print("Office temperature: ")
-    print(temperature["office"].iloc[0])
-
-    # print("lab1 temperature: ")
-    # print(temperature["lab1"])
-
-    # print("class1 temperature: ")
-    # print(temperature["class1"])
-    # print(type(temperature["office"]))
-
-    # # Task 2 part d
-    # dates = data["temperature"].index
-
-    # # find the time interval between each batch of data being sent
-    # seconds = dates[1:]-dates[:-1]
-    # interval = [t.total_seconds() for t in seconds]
-    # interval_series = pandas.Series(interval)
-
-    # # Find mean and variance of the time interval
-    # interval_mean = interval_series.mean()
-    # interval_var = interval_series.var()
-
-    # temp_median = data["temperature"].median()
-    # temp_var = data["temperature"].var()
+    print(total_outliers)
+  
 
