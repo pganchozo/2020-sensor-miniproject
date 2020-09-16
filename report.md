@@ -86,9 +86,35 @@ The mean and variance of the time interval can be seen in table 3 below:
   </tr>
 </table>
 
+The probability density function of the time interval can be seen in the image below:
+
+![Screen Shot 2020-09-16 at 5 01 02 PM](https://user-images.githubusercontent.com/45433428/93392160-4bb47580-f83e-11ea-83a8-ff9d509ee2fc.png)
+
+
 ## Task 3: Design
 
-In order to implement an algorithm that detects anomalies in the temperature dataset a separate module "detection.py" was created. Similar to analyze.py, the detection module takes as input the text file with the dataset. Before identifying anomalies in the data, the mean and standard deviation of the temperature values for each room were calculated using built-in Python functions.
+In order to implement an algorithm that detects anomalies in the temperature dataset a separate module "detection.py" was created. Similar to analyze.py, the detection module takes as input the text file with the dataset. Before identifying anomalies in the data, the mean and standard deviation of the temperature values for each room were calculated using built-in Python functions. After those values were found, they were used to calculate the upper and lower limits of what would be considered within a normal range. A value is classified as an outlier if it is three standard deviations away from the mean. Within the data collected, the following values were classified as outliers:
+
+<table>
+  <tr>
+    <th>Room</th>
+    <th>Temperature Value</th>
+  </tr>
+  <tr>
+    <td>office</td>
+    <td>353.8222199605123</td>
+  </tr>
+  <tr>
+    <td>lab1</td>
+    <td>-0.8772070228092659</td>
+    <td>109.07884462075411</td>
+  </tr>
+  <tr>
+    <td>class1</td>
+    <td>-137.70022516940054</td>
+    <td>60.87674819128705</td>
+  </tr>
+</table>
 
 
 ## Task 4: Conclusion
