@@ -9,7 +9,9 @@ After running both "ws_server.py" and "ws_client.py", the simulation's greeting 
 
 Task 1
 
+After adding code to the "ws_client.py" module, the data read by the sensor is saved to a text file. To specify that the data should be saved, the following must be run on the terminal: python ws_client.py "filename".
 
+Task 2
 
 For EC 463 Senior Design, Patricia and I were asked to program a system to report and find average temperatures based on a set of simulated sensors provided by the staff. Using Python websockets libraries, as opposed to a compiled language like C++ websockets, increased the difficulty of this miniproject as Patricia and I are relatively unfamiliar with Python and more comfortable with a C++ library. It would be preferable for the server to poll the sensors rather than have the senors reach out to the server when they have data so that the burden lays on the server rather than the sensors. A minor disadvantage to this method could be that if the server were to go down, none of the sensors would report data, while if a sensor goes down, the server would still receive data. This disadvantage goes either way with both methods.
 
