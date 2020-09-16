@@ -77,6 +77,11 @@ The probability density function for each of the sensors can be seen below:
 
 Task 3: Design
 
+In order to implement an algorithm that detects anomalies in the temperature dataset a separate module "detection.py" was created. Similar to analyze.py, the detection module takes as input the text file with the dataset. Before identifying anomalies in the data, the mean and standard deviation of the temperature values for each room were calculated using built-in Python functions.
+
+
+Task 4: Conclusion
+
 For EC 463 Senior Design, Patricia and I were asked to program a system to report and find average temperatures based on a set of simulated sensors provided by the staff. Using Python websockets libraries, as opposed to a compiled language like C++ websockets, increased the difficulty of this miniproject as Patricia and I are relatively unfamiliar with Python and more comfortable with a C++ library. It would be preferable for the server to poll the sensors rather than have the senors reach out to the server when they have data so that the burden lays on the server rather than the sensors. A minor disadvantage to this method could be that if the server were to go down, none of the sensors would report data, while if a sensor goes down, the server would still receive data. This disadvantage goes either way with both methods.
 
 The most similar instance of this simulation and its stated requirements is, in our minds, a Nest Home type operation. This could also be applied to larger settings, including weather mapping over fields to determine prime locations for different types of crops. However, this simulation is deficient in that it does not account for humidity, air quality, light exposure, UV ratings, or other qualities that could affect the "feel" or effective temperature in the room.
