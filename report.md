@@ -4,7 +4,8 @@ Task 0
 
 After running both "ws_server.py" and "ws_client.py", the simulation's greeting message is "ECE Senior Capstone IoT simulator". Afterwards, data begins to come in every few seconds as seen in the image below.
 
-![Screen Shot 2020-09-15 at 10 38 22 PM](https://user-images.githubusercontent.com/45433428/93286224-bfa23f80-f7a4-11ea-98ca-1c8005a5df24.png)
+![Screen Shot 2020-09-15 at 10 44 27 PM](https://user-images.githubusercontent.com/45433428/93286370-160f7e00-f7a5-11ea-88e8-d420c6d8d727.png)
+
 
 Task 1
 
