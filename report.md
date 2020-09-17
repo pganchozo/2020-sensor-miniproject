@@ -1,6 +1,8 @@
-Elisabeth Garfield & Patricia Ganchozo EC 463 Senior Design Mini Project Report September 17 2020
+Patricia Ganchozo 
+Elisabeth Garfield
 
-Task 0: Python Websockets
+
+### Task 0: Python Websockets
 
 After running both "ws_server.py" and "ws_client.py", the simulation's greeting message is "ECE Senior Capstone IoT simulator". Afterwards, data begins to come in every few seconds as seen in the image below.
 
@@ -8,14 +10,13 @@ After running both "ws_server.py" and "ws_client.py", the simulation's greeting 
 
 
 
-
-## Task 1: Data Flow
+### Task 1: Data Flow
 
 After adding code to the "ws_client.py" module, the data read by the sensor is saved to a text file. To specify that the data should be saved, the following must be run on the terminal: python ws_client.py "filename".
 
 
 
-## Task 2: Analysis
+### Task 2: Analysis
 
 The median and variance observed from the temperature data after collecting 971 values can be seen in the table 1 below:
 
@@ -90,8 +91,9 @@ The probability density function of the time interval can be seen in the image b
 
 ![Screen Shot 2020-09-16 at 5 01 02 PM](https://user-images.githubusercontent.com/45433428/93392160-4bb47580-f83e-11ea-83a8-ff9d509ee2fc.png)
 
+The probability density function of the time interval of the sensor readings mimics the Erlang-k distribution. The erlang distribution considers waiting times in queueing systems.
 
-## Task 3: Design
+### Task 3: Design
 
 In order to implement an algorithm that detects anomalies in the temperature dataset a separate module "detection.py" was created. Similar to analyze.py, the detection module takes as input the text file with the dataset. Before identifying anomalies in the data, the mean and standard deviation of the temperature values for each room were calculated using built-in Python functions. After those values were found, they were used to calculate the upper and lower limits of what would be considered within a normal range. A value is classified as an outlier if it is three standard deviations away from the mean. Within the data collected, the following values were classified as outliers:
 
@@ -117,7 +119,7 @@ In order to implement an algorithm that detects anomalies in the temperature dat
 </table>
 
 
-## Task 4: Conclusion
+### Task 4: Conclusion
 
 For EC 463 Senior Design, Patricia and I were asked to program a system to report and find average temperatures based on a set of simulated sensors provided by the staff. Using Python websockets libraries, as opposed to a compiled language like C++ websockets, increased the difficulty of this miniproject as Patricia and I are relatively unfamiliar with Python and more comfortable with a C++ library. It would be preferable for the server to poll the sensors rather than have the senors reach out to the server when they have data so that the burden lays on the server rather than the sensors. A minor disadvantage to this method could be that if the server were to go down, none of the sensors would report data, while if a sensor goes down, the server would still receive data. This disadvantage goes either way with both methods.
 
