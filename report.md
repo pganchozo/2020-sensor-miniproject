@@ -119,6 +119,7 @@ In order to implement an algorithm that detects anomalies in the temperature dat
   </tr>
 </table>
 
+A persistent change in temperature does not always indicate a failed sensor, however, sporadic changes or distinct spikes may indicate a faulty sensor.
 
 ### Task 4: Conclusion
 
